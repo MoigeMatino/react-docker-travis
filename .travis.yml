@@ -1,0 +1,10 @@
+sudo: required # for super user permissions to execute build
+services:
+  - docker
+
+before_install: # things to do before building project
+  - docker build -t matinodev/react-docker-travis -f Dockerfile.dev . 
+
+script:
+  - docker run -e CI=true matinodev/react-docker-travis npm run test # to run tests
+
